@@ -12,7 +12,7 @@ public class Pt1Run {
 			try {
 				
 				//p1.prBuffered();
-				p1.eof();
+				p1.pt9();
 				
 			}catch(IOException e) {
 				

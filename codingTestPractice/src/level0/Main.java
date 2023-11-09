@@ -5,36 +5,52 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
 public class Main { // 백준 제출용
 	
 	public static void main(String[] args) throws IOException{
 		
-		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		String s;
-		
-		while((s = bf.readLine()) != null) { // EOF를 만날 때까지 계속해서 읽음
+		StringTokenizer st = new StringTokenizer(br.readLine()); 
 
-				int result = 0;
-				String arr[] = s.split(" ");
-				
-				for(int j = 0; j <= 1; j++) {
-					
-					result = result + Integer.parseInt(arr[j]); // BufferedReader, Writer는 줄 마다 입력이 누적되거나 하지 않음.
-					
-				}
-				
-				bw.write(result + "\n");
-				
-			}
-			
-			bw.flush(); // console에 띄워주는건 얘의 역할임. write가 sout이 아님
-			bw.close();
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
 		
+		int bucket[] = new int[N];
+		
+		for(int i = 0; i < bucket.length; i++) {
+			
+			
+			bucket[i] = i + 1; // 바구니들의 초기값
 		}
 		
+		
+		for(int i = 1; i <= M; i++) {
+			
+			st = new StringTokenizer(br.readLine()); // 새 토큰 생성
+			
+			int one = Integer.parseInt(st.nextToken()); // 번째 바구니와
+			int two = Integer.parseInt(st.nextToken()); // 번째 바구니
+			
+			int one1 = bucket[one-1]; // 값을 담아놈
+			
+			bucket[one-1] = bucket[two-1];
+			bucket[two-1] = one1;
+			
+		}
+		
+		for (int i = 0; i < N; i++) {
+	        bw.write(Integer.toString(bucket[i]) + " ");
+
+	    }
+		
+		bw.flush();
+		br.close();
+	
+	}
 		
 }
 
