@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main { // 백준 제출용
@@ -14,42 +16,32 @@ public class Main { // 백준 제출용
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		StringTokenizer st = new StringTokenizer(br.readLine()); 
-
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
 		
-		int bucket[] = new int[N];
+		List<Integer> students = new ArrayList<>(); // 학생 수 
 		
-		for(int i = 0; i < bucket.length; i++) {
+		for(int i = 0; i < 30; i++) {
 			
-			
-			bucket[i] = i + 1; // 바구니들의 초기값
-		}
-		
-		
-		for(int i = 1; i <= M; i++) {
-			
-			st = new StringTokenizer(br.readLine()); // 새 토큰 생성
-			
-			int one = Integer.parseInt(st.nextToken()); // 번째 바구니와
-			int two = Integer.parseInt(st.nextToken()); // 번째 바구니
-			
-			int one1 = bucket[one-1]; // 값을 담아놈
-			
-			bucket[one-1] = bucket[two-1];
-			bucket[two-1] = one1;
+			students.add(i+1); // 출석번호
 			
 		}
 		
-		for (int i = 0; i < N; i++) {
-	        bw.write(Integer.toString(bucket[i]) + " ");
-
-	    }
+		int submitStudents[] = new int[28];
 		
-		bw.flush();
-		br.close();
+		for(int i = 0; i < 28; i++) { // 제출한 수
+			
+			submitStudents[i] = Integer.parseInt(br.readLine());
+			
+		}
+		
+		for(int i = 0; i < 28; i++) {
+			students.remove(submitStudents[i]);
+		}
+		
+		bw.write(students.get(0) + "\n" + students.get(1));
 	
+		bw.flush();
+		bw.close();
+		br.close();
 	}
 		
 }

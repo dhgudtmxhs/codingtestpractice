@@ -5,7 +5,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
 
 
@@ -417,26 +419,138 @@ public class Practice1 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		StringTokenizer st = new StringTokenizer(br.readLine()); 
-
-		int X = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
 		
-		int bucket[] = new int[30];
+		List<Integer> students = new ArrayList<>(); // 학생 수 
 		
-		for(int i = 0; i < bucket.length; i++) {
+		for(int i = 0; i < 30; i++) {
 			
-			bucket[i] = i + 1;
+			students.add(i+1); // 출석번호
 			
 		}
 		
-		for(int i = 0; i < bucket.length; i++) {
+		int submitStudents[] = new int[28];
+		
+		for(int i = 0; i < 28; i++) { // 제출한 수
 			
-			st = new StringTokenizer(br.readLine());
+			submitStudents[i] = Integer.parseInt(br.readLine());
+			
 		}
 		
-
+		for(int i = 0; i < 28; i++) {
+			students.remove((Integer)submitStudents[i]); // integer 붙이지 않으면 index요소 없앰 25입력하면 25를 지워야하는데 25번째 인덱스를 지움
+		}
+		
+		bw.write(students.get(0) + "\n" + students.get(1));
 	
+		bw.flush();
+		bw.close();
+		br.close();
 	}
+	
+	
+	public void st1() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		String s = br.readLine();
+		int i = Integer.parseInt(br.readLine());
+		
+		char result = s.charAt(i - 1); // charAt(0) 부터, 배열 인덱스처럼
+		
+		bw.write(result);
+		
+		bw.flush();
+		br.close();
+	}
+	
+	public void st2() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		String s = br.readLine();
+		
+		bw.write(Integer.toString(s.length())); // .length는 int형
+		bw.flush();
+		br.close();
+		
+	}
+	
+	public void st3() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int T = Integer.parseInt(br.readLine());
+		
+		for(int i = 0; i < T; i++) {
+			
+			String s = br.readLine();
+			
+			int num = s.length();
+			
+			 bw.write(Character.toString(s.charAt(0)) + s.charAt(num - 1)); // char형끼리 더하면 유니코드 값이 더해져서 출력됨
+			 bw.newLine(); // 개행문자
+
+		}
+		
+		bw.flush();
+		bw.close();
+		br.close();
+		
+	}
+	
+	public void st4() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		char ch = (char) br.read(); // int -> char 강제형변환
+		
+		int ascii = (int) ch;
+		
+		bw.write(Integer.toString(ascii));
+		
+		bw.flush();
+		bw.close();
+		br.close();
+		
+	}
+	
+	public void st5() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int N = Integer.parseInt(br.readLine());
+		
+		String s = br.readLine();
+		
+		int sum = 0;
+		
+		for(int i = 0; i < N; i++) {
+			
+			sum += Character.getNumericValue(s.charAt(i)); // int로 변환
+			// sum += s.charAt(i) - '0'; 아스키 코드 활용한다면
+			
+		}
+		
+		bw.write(Integer.toString(sum));
+		
+		
+		bw.flush();
+		bw.close();
+		br.close();
+		
+	}
+	
+	public void sprout() {
+		
+		
+		
+	}
+	
+	
 	
 }
